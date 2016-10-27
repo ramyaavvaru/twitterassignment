@@ -36,7 +36,7 @@ import com.mongodb.util.JSON;
                         .setOAuthAccessTokenSecret("QZblxRXqwdtJWDqMzzk0gXWWubZgWhhSCjamwxAuDlOco");
 
                 StatusListener listener = new StatusListener(){
-                    //                int count = 0;
+                                 int count = 0;
                     public void onStatus(Status status) {
 //               		System.out.println(status.getId() +  " : " + status.getSource()+ " : " +status.getCreatedAt()+ " : " + status.getUser().getName() + " : " +status.getText());
                         //System.out.println(status.getUser().getName() + " : " + status.getText());
@@ -46,16 +46,16 @@ import com.mongodb.util.JSON;
                         dbObj.put("name", status.getUser().getName());
                         dbObj.put("text", status.getText());
                         dbObj.put("source", status.getSource());
-//                	if(status.getGeoLocation() != null) {
-//	                	DBObject pos = new BasicDBObject();
-//	                	pos.put("long", status.getGeoLocation().getLongitude());
-//	                	pos.put("lat", status.getGeoLocation().getLatitude());
-//	                	dbObj.put("pos", pos);
-//                	} else if( status.getPlace() != null ) {
-//                		dbObj.put("country", status.getPlace().getCountry());
-//                	}
+              	if(status.getGeoLocation() != null) {
+	                	DBObject pos = new BasicDBObject();
+	                	pos.put("long", status.getGeoLocation().getLongitude());
+	                	pos.put("lat", status.getGeoLocation().getLatitude());
+	                	dbObj.put("pos", pos);
+                	} else if( status.getPlace() != null ) {
+                		dbObj.put("country", status.getPlace().getCountry());
+                	}
                         coll.insert(dbObj);
-//                    System.out.println(++count);
+                    System.out.println(++count);
                     }
                     public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {}
                     public void onTrackLimitationNotice(int numberOfLimitedStatuses) {}
